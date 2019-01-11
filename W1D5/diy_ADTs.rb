@@ -47,10 +47,20 @@ end
 
 class Map
   def initialize
-
+    @map = []
   end
 
   def set(key, value)
+    key_arr = []
+    @map.each do |key_val|
+      key_arr << key_val[0]
+    end
+    if key_arr.include?(key)
+      idx = key_arr.index(key)
+      @map[idx][1] = value
+    else
+      @map << [key, value]
+    end
   end
 
   def get(key)
