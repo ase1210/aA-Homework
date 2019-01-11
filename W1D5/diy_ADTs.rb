@@ -39,5 +39,6 @@ class Queue
   end
 
   def peek
+    @queue.first
   end
 end
