@@ -64,6 +64,12 @@ class Map
   end
 
   def get(key)
+    @map.each do |key_val|
+      if key_val[0] == key
+        return key_val[1]
+      end
+    end
+    return
   end
 
   def delete(key)
