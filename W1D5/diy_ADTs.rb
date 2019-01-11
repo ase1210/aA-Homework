@@ -27,6 +27,7 @@ end
 
 class Queue
   def initialize
+    @queue = []
   end
 
   def enqueue(el)
