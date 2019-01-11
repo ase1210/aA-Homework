@@ -73,8 +73,13 @@ class Map
   end
 
   def delete(key)
+    @map = @map.map do |key_val|
+      key_val unless key_val[0] == key
+    end
+
   end
 
   def show
+    @map
   end
 end
