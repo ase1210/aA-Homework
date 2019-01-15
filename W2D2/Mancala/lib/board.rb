@@ -2,6 +2,10 @@ class Board
   attr_accessor :cups
 
   def initialize(name1, name2)
+    @p1 = name1
+    @p2 = name2
+    @cups = Array.new(14) {[]}
+    fill_cups
   end
 
   def place_stones
@@ -9,6 +13,8 @@ class Board
   end
 
   def valid_move?(start_pos)
+    raise ArgumentError.new("Invalid starting cup") unless (1..12).to_a.include?(start_pos)
+    raise StandardError.new("Starting cup is empty") if @cups[]
   end
 
   def make_move(start_pos, current_player_name)
@@ -31,4 +37,16 @@ class Board
 
   def winner
   end
+
+  private
+  def fill_cups
+    cups.each_with_index do |cup, idx|
+      case idx
+      when 6, 13
+      else
+        4.times { cups[idx] << :stone}
+      end
+    end
+  end
+  
 end
