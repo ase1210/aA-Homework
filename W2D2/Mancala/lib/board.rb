@@ -5,6 +5,8 @@ class Board
     @p1 = name1
     @p2 = name2
     @cups = Array.new(14) {[]}
+    @p1_cup_index = 6
+    @p2_cup_index = 13
     fill_cups
   end
 
@@ -13,11 +15,13 @@ class Board
   end
 
   def valid_move?(start_pos)
-    raise ArgumentError.new("Invalid starting cup") unless (1..12).to_a.include?(start_pos)
-    raise StandardError.new("Starting cup is empty") if @cups[]
+    raise ArgumentError.new("Invalid starting cup") unless ((0..5).to_a + (7..12).to_a).include?(start_pos)
+    raise StandardError.new("Starting cup is empty") if @cups[start_pos].empty?
+    true
   end
 
   def make_move(start_pos, current_player_name)
+
   end
 
   def next_turn(ending_cup_idx)
@@ -48,5 +52,5 @@ class Board
       end
     end
   end
-  
+
 end
