@@ -5,8 +5,6 @@ class Board
     @p1 = name1
     @p2 = name2
     @cups = Array.new(14) {[]}
-    @p1_cup_index = 6
-    @p2_cup_index = 13
     fill_cups
   end
 
@@ -62,9 +60,15 @@ class Board
   end
 
   def one_side_empty?
+    cups[0..5].all? {|cup| cup.empty?} || cups[7..12].all? {|cup| cup.empty?}
   end
 
   def winner
+    count_p1 = cups[6].length
+    count_p2 = cups[13].length
+    return @p1 if count_p1 > count_p2
+    return @p2 if count_p1 < count_p2
+    :draw
   end
 
   private
