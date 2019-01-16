@@ -9,13 +9,25 @@ describe Dessert do
   let(:chef) { double("chef") }
 
   describe "#initialize" do
-    it "sets a type"
+    subject(:dessert) { Dessert.new("brownie", 10, "Steve")}
+    it "sets a type" do
+      expect(dessert.type).to eq("brownie")
+    end
 
-    it "sets a quantity"
+    it "sets a quantity" do 
+      expect(dessert.quantity).to eq(10)
+    end
 
-    it "starts ingredients as an empty array"
+    it "starts ingredients as an empty array" do 
+      expect(dessert.ingredients).to be_empty
+    end
+    context "throws and error when given a string quantity" do
+      subject(:dessert) { Dessert.new("brownie", "10", "steve")}
 
-    it "raises an argument error when given a non-integer quantity"
+      it "raises an argument error when given a non-integer quantity" do
+      expect { dessert }.to raise_error(ArgumentError)
+      end
+    end
   end
 
   describe "#add_ingredient" do
