@@ -110,9 +110,9 @@ class Playwright
     raise "#{self} not in Database" unless self.id
     PlayDBConnection.instance.execute(<<-SQL, self.name, self.birth_year, self.id)
       UPDATE
-        playwrights (name, birth_year)
-      VALUES 
-        (?, ?)
+        playwrights
+      SET 
+        name = ?, birth_year = ?
       WHERE
         id = ?;
     SQL
