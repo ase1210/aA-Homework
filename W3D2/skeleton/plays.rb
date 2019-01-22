@@ -119,5 +119,6 @@ class Playwright
   end
 
   def get_plays
+    Play.find_by_playwright(self.name)
   end
 end
